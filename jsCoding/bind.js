@@ -1,0 +1,5 @@
+
+Function.prototype.bind  = (context,)=>{
+    
+
+}
