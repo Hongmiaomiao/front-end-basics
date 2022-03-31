@@ -1,0 +1,22 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "promises-aplus-tests": "*"
+  },
+  "scripts": {
+    "test": " promises-aplus-tests ./jsCoding/promise/myPromise.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hongmiaomiao/frontEndBasics.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hongmiaomiao/frontEndBasics/issues"
+  },
+  "homepage": "https://github.com/Hongmiaomiao/frontEndBasics#readme"
+}
