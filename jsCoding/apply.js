@@ -11,6 +11,21 @@ let apply = function(obj,args){
     delete obj.fn;
 }
 
+
+// 两个关键点
+// 1. 把方法绑定到新对象上的时候，不要覆盖了对象里原来的方法属性 (Symbol)
+// 2. apply最多接受两个参数，第二个参数是数组，也可以不传
+Function.prototype.myApply = function(obj,args){
+    let key = Symbol('key')
+    obj[key] = this;
+    if(args[1]){
+        obj[key](...args[1])
+    }else{
+        obj.context()
+    }
+    delete obj[context];
+}
+
 /*
  更优雅的写法
  1. 用原型链写法更优，Function.prototype.apply = xxx
