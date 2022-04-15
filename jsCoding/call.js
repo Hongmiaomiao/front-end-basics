@@ -1,15 +1,17 @@
 
 // 因为传入的参数个数不固定，所以利用arguments去访问参数比较合理
 
-Function.prototype.call = function(context,...args){
-    let obj = context;
-    obj.fn = this;
-    if(args.length>0){
-        obj.fn(...args);
+
+Function.prototype.myCall = (context,...args)=>{
+    const key = Symbol('key');
+    context[key] = this;
+    if(args.length){
+        context[key](...args);
+
     }else{
-        obj.fn()
+        context[key]()
     }
-    delete obj.fn;
+    delete context[key];
 }
 
 // 测试一下
