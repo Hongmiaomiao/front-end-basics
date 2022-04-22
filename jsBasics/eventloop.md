@@ -5,6 +5,7 @@ https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
 
 谈事件循环
 ### 单线程+事件循环达成非阻塞
+
 1. js是单线程的语言
    单线程就会涉及到如果异步事件它一直在等待，就会造成浏览器的卡顿
 2. 事件循环机制让js实现非阻塞  （script其实是宏任务，最开始会执行一个宏任务的）
@@ -43,6 +44,7 @@ https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
 6. close callbacks: 例如socket.on('close', ...)这种close事件的回调
 
 #### 自述回答
+
 v8引擎将js代码解析后传入libuv引擎后，循环首先进入poll阶段。
 - 外部输入数据-->轮询阶段(poll)-->检查阶段(check)-->关闭事件回调阶段(close callback)-->定时器检测阶段(timer)-->I/O事件回调阶段(I/O callbacks)-->闲置阶段(idle, prepare)-->轮询阶段...
 1. 外部输入，进入poll阶段
@@ -55,6 +57,7 @@ v8引擎将js代码解析后传入libuv引擎后，循环首先进入poll阶段�
    6. 在poll队列为空的时候会去检查是否有到点的计时器，如果一个或多个计时器准备就绪，事件循环将返回到计时器阶段以执行这些计时器的回调
 
 ### 常见困惑
+
 process.nextTick()对比setImmediate()
 就用户而言，我们有两个类似的调用，但它们的名称令人困惑。
 

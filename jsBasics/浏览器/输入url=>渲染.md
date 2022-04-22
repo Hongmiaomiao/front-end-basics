@@ -1,5 +1,5 @@
 [一个比较详细全面的过程分析地址](http://www.dailichun.com/2018/03/12/whenyouenteraurl.html)
-
+[渲染过程详解](https://juejin.cn/post/6844903476506394638)
 #### dns解析
 1. DNS查询顺序：浏览器缓存→系统缓存→路由器缓存→ISP DNS 缓存→递归搜索
 2. 没有的话做解析
