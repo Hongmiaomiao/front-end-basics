@@ -1,8 +1,10 @@
-一篇讲得不错的文章： https://pomb.us/build-your-own-react/
+[外网实现你自己的react，很不错的文章](https://pomb.us/build-your-own-react/)
 km文章： <https://km.woa.com/group/22651/articles/show/441548>
 为什么用函数式组件？ https://www.zhihu.com/question/343314784 （感觉最大好处就是优雅的逻辑复用方式
 网上都说操作真实 DOM 慢，但测试结果却比 React 更快，为什么？ - 尤雨溪的回答 - 知乎
 https://www.zhihu.com/question/31809713/answer/53544875
+
+[hook实现原理](https://juejin.cn/post/6986177658614710309#heading-4)
 ## 两个核心： jsx语法、函数式组件、hooks、dom
 
 ### Start a EsayReact
@@ -185,19 +187,24 @@ function performUnitOfWork(fiber) {
 }
 ```
 #### Step5 Commit阶段
+
 当没有nextUnitWork了，认为dom构建完整，提交dom变更
 
 #### Step6 调和阶段（dom修改、虚拟dom的比对）
 render时会获取到新的dom树结构，我们会拿保存的旧的虚拟dom的对象和它比较。
 
 **比较方法**（react提供key键，通过key我们可以方便地做节点比对）
+
 1. 如果类型相同，可以保持 dom 节点，使用新的属性替换。
 2. 如果类型不同并且为新element（根据key来辅助判断），则需要创建一个新的dom节点；
 3. 如果类型不同且为旧fiber的话（根据key来判断），需要删除
 2、3点中key属性可以帮助react判断是否原来的节点，如果类型改变但非原来节点，原来节点在另一个位置，那只需要进行位置的交换就可以。
 
+
 #### Step7 函数式组件
+
 function组件和class组件区别在于：
+
 1. Functional组件的fiber没有dom节点
 2. children是通过直接运行函数得到的，而不是通过children属性
 在 performUnitOfWork 中判断是否是函数式组件，是的话执行updateFunctionComponent更新，否执行原来的更新方式
