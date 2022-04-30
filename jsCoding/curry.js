@@ -10,3 +10,20 @@ function curry(func){
         }
     }
 }
+
+
+
+function curry(fun){
+    let arr = [];
+    let context =this;
+    return function curried(...arg){
+        arr = arr.concat(arg)
+        if(arr.length === fun.length){
+            return func.apply(context,arr)
+        }else{
+            return curried
+        }
+    }
+
+
+}
