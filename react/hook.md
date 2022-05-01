@@ -79,7 +79,31 @@ function useState(initialState) {
 }
 ```
 
-## hooks实现原来生命周期的各种用法
+## hooks常用的一些场景
+
+1. useState(存变量状态、根据变量状态刷新)
+2. useReducer(useState升级版，可以定义多种action,比如 + 、-、*、/这种状态变更场景比较复杂的类似情况)
+3. useEffect(useDidUpdate) => 1. 注意第二个参数传依赖值避免每次都触发 2. 可以分离声明多个useEffect，避免依赖影响 3. useLayoutEffect在渲染前去执行里面的逻辑
+4. useRef => 比如对input、表单这些有时候需要用ref去获取相应的dom对象。
+5. forwardRef => 接受一个ref，转发到另一个组件中。
+6. useImperativeHandle  => 子组件把自身的ref对象暴露给父组件(但配forwardRef使用)
+  
+```js
+function FancyInput(props, ref) {
+  const inputRef = useRef();
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      inputRef.current.focus();
+    }
+  }));
+  return <input ref={inputRef} ... />;
+}
+FancyInput = forwardRef(FancyInput);
+
+```
+
+在本例中，渲染 <FancyInput ref={inputRef} /> 的父组件可以调用 inputRef.current.focus()。
+7. react18中useDeferredValue、useTrainsition、useId
 
 ## Q && A
 
@@ -103,3 +127,6 @@ useEffect 是异步执行的，而useLayoutEffect是同步执行的。
 useEffect 的执行时机是浏览器完成渲染之后，而 useLayoutEffect 的执行时机是浏览器layout后，paint前执行。浏览器把内容真正渲染到界面之前，和 componentDidMount 等价。
 
 ## 由hook延伸的与性能优化/用户体验优化相关的一些点
+
+1. 利用React.memo缓存组件
+ 父组件更新 => 引发子组件更新，为了避免这样的情况。
