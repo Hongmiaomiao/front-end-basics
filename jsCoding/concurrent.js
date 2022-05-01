@@ -7,13 +7,13 @@ async function limit(limit, array, iterateFunc) {
         if (i === array.length) {
             return Promise.resolve();
         }
-        // promise.resolve(func)并未执行里面的fun，只是把func转化成了promise
+        // promise.resolve(func)并未执行里面的fun，只是把func转化成了promise,这里的写法是转化并且执行了
         const task = Promise.resolve().then(() => iterateFunc(array[i++]));
         tasks.push(task)
-        // 任务添加到doing列表，并在执行完成后从doing列表删除
+        // 任务执行完成后从doing列表删除
         const doing = task.then(() => doingTasks.splice(doingTasks.indexOf(doing), 1))
         doingTasks.push(doing)
-        // 当doingTask存在大于限制的情况，进行递归
+        // 当doingTask存在大于限制的情况，等待第一个执行完的任务，否则递归继续添加到执行队列
         const res = doingTasks.length >= count ? Promise.race(doingTasks) : Promise.resolve();
         return res.then(enqueue)
     };
