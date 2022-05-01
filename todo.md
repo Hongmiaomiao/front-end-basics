@@ -1,4 +1,5 @@
-### react 中的状态管理方案
+## react 中的状态管理方案
+
 https://mp.weixin.qq.com/s/MmBFwrAUhRzROLllWUa0gg
 
 ### 微任务
@@ -14,3 +15,10 @@ https://mp.weixin.qq.com/s/MmBFwrAUhRzROLllWUa0gg
 https://blog.51cto.com/u_15320542/4129849
 
 ### webpack重点
+
+## typescript
+
+## es6（类、常用的方法）
+
+## 模块化
+
