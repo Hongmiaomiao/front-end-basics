@@ -6,17 +6,18 @@
 
 [官方文档](https://reactjs.org/docs/hooks-reference.html#cleaning-up-an-effect)
 [hook实现原理](https://juejin.cn/post/6891577820821061646)
+[很全易懂的hook讲解](https://juejin.cn/post/6844903985338400782#heading-24)
 
 ## react为什么加入hooks?
 
 [官网](https://react.docschina.org/docs/hooks-intro.html)
 
-1. 以往复用状态让代码耦合、形成嵌套地域： 以往复用状态逻辑比较麻烦（高阶组件、render props容易形成嵌套地狱），Hook 使你在无需修改组件结构的情况下复用状态逻辑。
-2. 生命周期定义：
-编写复杂组件因为牵扯到状态逻辑，以前会让开发者在生命周期里去做一些不相干的逻辑处理，以及为了数据状态管理引入状态管理库，使得复杂组件不好理解。为了解决这个问题，Hook 将组件中相互关联的部分拆分成更小的函数（比如设置订阅或请求数据），而并非强制按照生命周期划分。你还可以使用 reducer 来管理组件的内部状态，使其更加可预测。
-3. class对开发者要求较高
-   1. 以前的class组件对开发者要求比较高，要理解class的this,要绑定事件处理的this
-   2. 不同的生命周期会使逻辑变得分散且混乱，不易维护和管理；
+类组件的不足：
+
+- 状态逻辑难复用： 在组件之间复用状态逻辑很难，可能要用到 render props （渲染属性）或者 HOC（高阶组件），但无论是渲染属性，还是高阶组件，都会在原先的组件外包裹一层父容器（一般都是 div 元素），导致层级冗余，容易形成嵌套地域
+- 趋向复杂难以维护： 生命周期函数中混杂不相干的逻辑（如：在 componentDidMount 中注册事件以及其他的逻辑，在 componentWillUnmount 中卸载事件，这样分散不集中的写法，很容易写出 bug ）
+类组件中到处都是对状态的访问和处理，导致组件难以拆分成更小的组件
+- 复杂的this指向。
 
 ## hook实现原理
 
@@ -78,9 +79,27 @@ function useState(initialState) {
 }
 ```
 
+## hooks实现原来生命周期的各种用法
+
 ## Q && A
 
 1. 为什么不能在条件中去定义hooks?
 初始化组件的时候，hooks会维护一个链表，对应相应的state和setState方法，如果在条件渲染中使用，会导致重渲染的时候，异常的游标对应，异常的游标对应也会导致调用的setState方法失效。
+2. shouldComponentUpdate如何用hook实现？
 
-2.
+```js
+const Button = React.memo((props) => {
+  // 你的组件
+});
+```
+
+这不是一个 Hook 因为它的写法和 Hook 不同。React.memo 等效于 PureComponent，但它只比较 props。（你也可以通过第二个参数指定一个自定义的比较函数来比较新旧 props。如果函数返回 true，就会跳过更新。）
+React.memo 不比较 state，因为没有单一的 state 对象可供比较。但你也可以让子节点变为纯组件，或者 用 useMemo 优化每一个具体的子节点。
+4. 原来生命周期的方法对应如何实现？
+componentDidMount => useLayoutEffect
+3. useEffect、useLayoutEffect?
+（比如state给了一个初始值、useEffect改变了state） => 使用useEffect会出现ui闪烁一下
+useEffect 是异步执行的，而useLayoutEffect是同步执行的。
+useEffect 的执行时机是浏览器完成渲染之后，而 useLayoutEffect 的执行时机是浏览器layout后，paint前执行。浏览器把内容真正渲染到界面之前，和 componentDidMount 等价。
+
+## 由hook延伸的与性能优化/用户体验优化相关的一些点

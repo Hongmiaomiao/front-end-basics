@@ -1,4 +1,6 @@
 
+// 另一个实现版本
+// https://fe.ecool.fun/topic-answer/462ff8a8-29ba-4e49-88ad-d60e7b3f4ee8
 async function limit(limit, array, iterateFunc) {
     const tasks = []; // 保存所有异步任务
     const doingTasks = []; // 存储正在执行的异步任务欧
