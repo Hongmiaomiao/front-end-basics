@@ -20,12 +20,18 @@
 
 ## hook实现原理
 
-### 模拟实现hook主要是两点：
+### 模拟实现hook主要是两点
 
 1. Hooks的第一个核心原理：闭包，是的Hooks返回的state和setState方法，在hooks内部都是利用闭包实现的
 2. 初始化组件的时候，hooks会维护一个链表，对应相应的state和setState方法，在更新的时候，会去根据这个顺序调用相应的更新方法做变更。
  模拟实现：
    第一次渲染时候，根据 useState 顺序，逐个声明 state 并且将其放入全局 Array 中。每次声明 state，都要将 cursor 增加 1。更新 state，触发再次渲染的时候。cursor 被重置为 0。按照 useState 的声明顺序，依次拿出最新的 state 的值，视图更新。
+
+结合fiber看：
+
+1. Hook数据结构中和fiber数据结构中都有memoizedState字段，但是表达的意义不同，Hook中是作为缓存的state值，但是fiber中是指向的当前fiber下的hooks队列的首个hook（hook是链表结构，指向首个，就意味着可以访问整个hooks队列）
+2. fiber中调用hook的时候，会先调用一个前置函数，将当前渲染的fiber和当前执行的hooks队列的首个hook赋值给了当前的全局变量currentlyRenderingFiber和firstCurrentHook
+3. fiber调用hooks结束的时候，会调用finishHooks方法，可以看到，会将当前fiber的memoizedState字段存入firstWorkInProgressHook，也就是将hooks队列的首个hook存入，然后将currentlyRenderingFiber字段置为null
 
 ### 代码模拟实现
 
@@ -71,9 +77,10 @@ function useState(initialState) {
   return [states[currenCursor], setState];
 }
 ```
+
 ## Q && A
 
 1. 为什么不能在条件中去定义hooks?
 初始化组件的时候，hooks会维护一个链表，对应相应的state和setState方法，如果在条件渲染中使用，会导致重渲染的时候，异常的游标对应，异常的游标对应也会导致调用的setState方法失效。
 
-2. 
+2.
