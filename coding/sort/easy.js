@@ -15,6 +15,7 @@ var swap = function (arr, l, r) {
 
 /** 插入排序 */
 // 分成两部分，一部分已排序的，一部分未排序，每次从未排序的取一个插入到已排序的数组里。在程序初始的时候已排序的部分就是第一个元素。
+
 var insertion = function (nums) {
     var insertLength = 1;
     for (let i = 1; i < nums.length; i++) {

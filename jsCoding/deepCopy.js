@@ -11,7 +11,7 @@
 // 1. 递归的去遍历数组的属性（存在obj的
 // 2. 循环引用问题
 function deepCopy(obj, cache = new weakMap()) {
-    if (!obj instanceof Object) {
+    if (!(obj instanceof Object)) {
         return obj;
     }
     // 防止循环引用
