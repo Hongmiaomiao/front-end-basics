@@ -3,15 +3,15 @@
 //1.普通递归省略
 
 // 2. reduce实现
-function flatArr1(arr){
-    return arr.reduce(function(prev,cur){
-        console.log('cur',cur,prev)
-        return prev.concat(Array.isArray(cur)?flatArr1(cur):cur)
-    },[])
+function flatArr1(arr) {
+    return arr.reduce(function (prev, cur) {
+        console.log('cur', cur, prev)
+        return prev.concat(Array.isArray(cur) ? flatArr1(cur) : cur)
+    }, [])
 }
 // console.log(flatArr1([1,[2,[3,[4]]]]))
 
-function flatArr(arr){
+function flatArr(arr) {
     return arr.flat(Infinity)
 }
-console.log(flatArr([1,[2,[3,[4]]]]))
+console.log(flatArr([1, [2, [3, [4]]]]))

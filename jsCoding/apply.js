@@ -1,16 +1,3 @@
-// apply接受两个参数，一个是绑定的对象，一个是参数数组
-
-let apply = function(obj,args){
-    // this是function,传进来的参数是要绑定的对象
-    obj.fn = this;
-    if(args.length > 0 ){
-        obj.fn([...args]);
-    }else{
-        obj.fn();
-    }
-    delete obj.fn;
-}
-
 
 // 两个关键点
 // 1. 把方法绑定到新对象上的时候，不要覆盖了对象里原来的方法属性 (Symbol)

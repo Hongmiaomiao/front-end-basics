@@ -1,3 +1,6 @@
+
+# 事件循环
+
 ## 事件循环与页面渲染影响 => 事件循环去谈论性能优化
 
 node官方文档的解释是最佳的
@@ -6,6 +9,7 @@ https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
 知乎详细解析： https://zhuanlan.zhihu.com/p/33058983
 
 谈事件循环
+
 ### 单线程+事件循环达成非阻塞
 
 1. js是单线程的语言
@@ -17,12 +21,13 @@ https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
       - 宏任务包括 script ， setTimeout ，setInterval ，setImmediate ，I/O ，UI rendering
    3. 每次先清空微任务，然后把宏任务中的第一个加入执行栈，然后回到1循环
 
-### Node.js的libuv引擎中的事件循环的模型:
+### Node.js的libuv引擎中的事件循环的模型
+
 ┌───────────────────────┐
 ┌─>│        timers         │
 │  └──────────┬────────────┘
 │  ┌──────────┴────────────┐
-│  │     pengding callbacks     │
+│  │     pending callbacks     │
 │  └──────────┬────────────┘
 │  ┌──────────┴────────────┐
 │  │     idle, prepare     │
@@ -37,7 +42,8 @@ https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
 └──┤    close callbacks    │
    └───────────────────────┘
 
-看inconming,第一次执行开始的是poll阶段
+看inConming,第一次执行开始的是poll阶段
+
 1. timers: 执行定时器的回调如setTimeout() 和 setInterval()。
 2. pending callbacks: 为某些系统操作（例如 TCP 错误类型）执行回调。
 3. idle, prepare: 这个阶段仅在内部使用，可以不必理会。
@@ -66,3 +72,6 @@ process.nextTick()对比setImmediate()
 process.nextTick()在同一阶段立即触发
 setImmediate()在事件循环的下一次迭代或“滴答”时触发
 本质上，名称应该互换。process.nextTick()比 触发得更快setImmediate()，但这是过去的产物，不太可能改变。进行此切换会破坏 npm 上的大部分软件包。每天都有更多的新模块被添加，这意味着我们等待的每一天，都会发生更多潜在的损坏。虽然它们令人困惑，但名称本身不会改变。
+
+### 当次事件循环，比如在执行微任务的时候解析到新的微任务，是在当前事件循环执行吗
+
