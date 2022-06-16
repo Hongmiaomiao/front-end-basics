@@ -20,11 +20,28 @@
     let someValue: any = "this is a string";
     let strLength: number = (someValue as string).length;
     ```
-6. 接口类型interface
-   只读属性readyonly
+6. 只读属性readyonly
     ```js
     interface Point {
     readonly x: number;
     readonly y: number;
     }
     ```
+    **Q&A**
+    > readonly与const有什么区别
+    >
+    > 变量使用const、属性使用readonly
+
+    > readyonly和es6类的私有属性有什么区别（_xx）
+
+    > 如何实现readonly?
+7. ts的private如何实现
+[实现私有属性](https://juejin.cn/post/7080131411503972366#heading-3)
+7. 接口类型interface
+
+8. interface和type的区别？
+ 二者都可以extends
+1. interface不能声明基本类型、元祖类型这些
+2. type可以用typeof获取类型用于后续类型生命
+
+interface可以合并（分开生命同一个对象，可以被合并起来）
