@@ -16,7 +16,7 @@
 
     let strLength: number = (<string>someValue).length;
     ```
-    ```js
+    ```
     let someValue: any = "this is a string";
     let strLength: number = (someValue as string).length;
     ```
@@ -40,8 +40,11 @@
 7. 接口类型interface
 
 8. interface和type的区别？
- 二者都可以extends
-1. interface不能声明基本类型、元祖类型这些
-2. type可以用typeof获取类型用于后续类型生命
-
-interface可以合并（分开生命同一个对象，可以被合并起来）
+   [interface、type区别](https://github.com/SunshowerC/blog/issues/7)
+   相同点
+   - 都可以描述对象/函数
+   - 都可以extends，写法不同（interface用extends、type用&
+   不同点®
+   - interface不能声明基本类型、元祖类型这些
+   - type 可以用 typeof 获取类型用于后续类型生命
+   - interface可以合并（分开声明同一个对象，可以被合并起来）
