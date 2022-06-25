@@ -21,7 +21,8 @@
     let someValue: any = "this is a string";
     let strLength: number = (someValue as string).length;
     ```
-6. 只读属性readyonly
+## 接口类型
+1. 只读属性readonly
     ```js
     interface Point {
     readonly x: number;
@@ -33,10 +34,30 @@
     >
     > 变量使用const、属性使用readonly
 
-    > readyonly和es6类的私有属性有什么区别（_xx）
+    > readonly和es6类的私有属性有什么区别（_xx）
 
     > 如何实现readonly?
-7. ts的private如何实现
+2. 接口类型的未知类型
+   - 类型断言
+    ```js
+    interface SquareConfig {
+    color?: string;
+    width?: number;
+    } 
+    function createSquare(config: SquareConfig): { color: string; area: number } {
+    // ...
+    }
+    let mySquare = createSquare({ width: 100, opacity: 0.5 } as SquareConfig);
+    ```
+    - 定义额外未知的属性
+    ```js
+        interface SquareConfig{
+            color?: string;
+            width?: number;
+            [propName: string]: any;
+        }
+    ```
+3. ts的private如何实现
 [实现私有属性](https://juejin.cn/post/7080131411503972366#heading-3)
 7. 接口类型interface
 
