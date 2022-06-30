@@ -53,7 +53,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "da61ab107f0597dd",
@@ -90,6 +91,8 @@
   "active": "d3d6a4c9b377af35",
   "lastOpenFiles": [
     "性能/性能监控方案.md",
+    "性能/static/Pasted image 20220627101522.png",
+    "性能/static/Pasted image 20220627013630.png",
     "性能/性能监控.md",
     "性能/性能优化.jpg",
     "性能/static/Pasted image 20220627013756.png",
