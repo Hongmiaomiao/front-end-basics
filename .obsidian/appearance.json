@@ -1,3 +1,6 @@
 {
-  "baseFontSize": 10
+  "baseFontSize": 15,
+  "cssTheme": "Deep Work",
+  "theme": "obsidian",
+  "translucency": false
 }

@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "性能/性能监控方案.md",
+            "file": "ts/typescript.md",
             "mode": "source",
             "source": false
           }
@@ -53,7 +53,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 203,
     "collapsed": true
   },
   "right": {
@@ -70,32 +70,45 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "性能/性能监控方案.md",
+                "file": "ts/typescript.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": false
+              }
+            }
+          },
+          {
+            "id": "f4a7e50b0009c343",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "ts/typescript.md"
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "active": "d3d6a4c9b377af35",
   "lastOpenFiles": [
-    "性能/性能监控方案.md",
-    "性能/static/Pasted image 20220627101522.png",
-    "性能/static/Pasted image 20220627013630.png",
-    "性能/性能监控.md",
-    "性能/性能优化.jpg",
-    "性能/static/Pasted image 20220627013756.png",
-    "性能/static/Pasted image 20220625180854.png"
+    "ts/typescript.md",
+    "taro/taro.md",
+    "开源包管理.md",
+    "xmind/xmind.md",
+    "前端的模块化.md",
+    "其他问题.md",
+    "性能/web页面全链路性能优化指南笔记.md",
+    "性能/performance.png",
+    "性能/性能指标.md",
+    "性能/性能优化点总结.md"
   ]
 }
